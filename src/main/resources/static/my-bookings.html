@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Bookings</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .card { max-width: 500px; background: white; padding: 20px; margin: 20px auto; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+        h3 { margin-top: 0; color: #333; }
+        .actions { margin-top: 15px; display: flex; gap: 10px; }
+        .btn-update { background-color: #b88675; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; }
+        .btn-cancel { background-color: #b88675; color: white; padding: 8px 15px; border: none; border-radius: 4px; cursor: pointer; text-decoration: none; }
+        .btn-cancel:hover { background-color: #d9534f; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h3>My Bookings</h3>
+    <hr>
+    <p><strong>Property:</strong> Modern 3-Bedroom House</p>
+    <p><strong>Location:</strong> 📍 Colombo</p>
+    <p><strong>Date:</strong> 15 Oct 2026</p>
+    <p><strong>Time:</strong> 10:00 AM</p>
+    <p><strong>Status:</strong> <span style="color: orange;">Pending</span></p>
+
+    <div class="actions">
+        <a href="update-booking.html" class="btn-update">Update Details</a>
+        <a href="cancel-booking.html" class="btn-cancel">Cancel Booking</a>
+    </div>
+</div>
+
+</body>
+</html>
