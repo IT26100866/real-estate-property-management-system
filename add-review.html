@@ -31,8 +31,8 @@
                 <span class="star" data-value="4">★</span>
                 <span class="star" data-value="5">★</span>
             </div>
-            <!-- Hidden input to store the selected rating value -->
-            <input type="hidden" id="rating" name="rating" value="5">
+            <!-- Hidden input set to 0 initially -->
+            <input type="hidden" id="rating" name="rating" value="0">
         </div>
 
         <!-- Text area for the review comment -->
@@ -49,7 +49,7 @@
     </form>
 </div>
 
-<!-- Success Popup Modal (Hidden by default) -->
+<!-- Success Popup Modal -->
 <div id="successModal" class="modal-overlay">
     <div class="modal-content">
         <h3>Success!</h3>
@@ -60,11 +60,9 @@
 
 <!-- JavaScript code for Star Rating and Custom Success Popup -->
 <script>
-    // Get star elements and hidden input
     const stars = document.querySelectorAll('.star');
     const ratingInput = document.getElementById('rating');
 
-    // Function to update star colors
     function updateStars(value) {
         stars.forEach(star => {
             if (star.getAttribute('data-value') <= value) {
@@ -75,10 +73,9 @@
         });
     }
 
-    // Set initial stars to 5
-    updateStars(5);
+    // Set initial stars to 0 (empty)
+    updateStars(0);
 
-    // Add click event to each star
     stars.forEach(star => {
         star.addEventListener('click', function() {
             const value = this.getAttribute('data-value');
@@ -97,10 +94,10 @@
         // Show the custom popup
         modal.style.display = "flex";
 
-        // Clear the form
+        // Clear the form and reset stars to 0
         document.getElementById("comment").value = "";
-        ratingInput.value = "5";
-        updateStars(5);
+        ratingInput.value = "0";
+        updateStars(0);
     });
 
     // Close modal when OK is clicked

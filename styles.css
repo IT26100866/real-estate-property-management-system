@@ -1,0 +1,157 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFEDD8;
+    color: #0E1627;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Main container for the review form */
+.review-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(14, 22, 39, 0.2);
+    width: 100%;
+    max-width: 500px;
+    border-top: 5px solid #9D6B53;
+}
+
+/* Page title styling */
+.page-title {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #0E1627;
+}
+
+/* Form group styling for spacing */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Label styling */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #0E1627;
+}
+
+/* Input fields and textarea styling */
+.form-group select,
+.form-group textarea,
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #CFAB8D;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+/* Change border color on focus */
+.form-group select:focus,
+.form-group textarea:focus,
+.form-group input[type="text"]:focus {
+    outline: none;
+    border-color: #9D6B53;
+}
+
+/* Button group container */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+/* Submit button styling */
+.submit-btn {
+    background-color: #9D6B53;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
+    margin-right: 10px;
+    transition: background-color 0.3s;
+}
+
+.submit-btn:hover {
+    background-color: #0E1627;
+}
+
+/* Cancel button styling */
+.cancel-btn {
+    background-color: #BD8E89;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    flex: 1;
+    margin-left: 10px;
+    transition: background-color 0.3s;
+}
+
+.cancel-btn:hover {
+    background-color: #CFAB8D;
+}
+
+/* --- Star Rating Styling --- */
+.star-rating {
+    font-size: 35px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.star-rating .star {
+    color: #d3d3d3; /* Unselected stars (Gray) */
+    transition: color 0.2s ease-in-out;
+}
+
+.star-rating .star.active {
+    color: #FFD700; /* Selected stars (Brown) */
+}
+
+/* --- Custom Success Modal Styling --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(14, 22, 39, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-top: 5px solid #9D6B53;
+    max-width: 300px;
+    width: 100%;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: #0E1627;
+    margin-bottom: 10px;
+}
+
+.modal-content p {
+    color: #555;
+    margin-bottom: 25px;
+}
