@@ -1,0 +1,163 @@
+/* Background for Profile Page */
+body.profile-page {
+    background-image: linear-gradient(rgba(255, 237, 216, 0.4), rgba(255, 237, 216, 0.4)), url('bg-profile.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #FFEDD8;
+    color: #0E1627;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Top Right Button (Add New Review) */
+.profile-link {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    background-color: #0E1627;
+    color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.profile-link:hover {
+    background-color: #9D6B53;
+    transform: translateY(-2px);
+}
+
+/* Glassmorphism Profile Container */
+.review-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(14, 22, 39, 0.2);
+    width: 100%;
+    max-width: 750px;
+    border-top: 5px solid #9D6B53;
+    backdrop-filter: blur(10px);
+}
+
+/* Page title */
+.page-title {
+    text-align: left;
+    margin-bottom: 20px;
+    color: #0E1627;
+}
+
+/* --- Review Table Styling --- */
+.table-responsive {
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.review-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+.review-table th, .review-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.review-table th {
+    background-color: #0E1627;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.star-rating-table .star {
+    color: #d3d3d3;
+    font-size: 20px;
+}
+
+.star-rating-table .star.active {
+    color: #FFD700;
+}
+
+/* Table Action Buttons */
+.edit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 12px;
+    transition: background-color 0.3s;
+}
+
+.edit-btn:hover { background-color: #45a049; }
+
+/* SVG Delete Button Styling */
+.delete-btn {
+    background-color: transparent;
+    color: #d9534f;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    transition: transform 0.2s, color 0.2s;
+}
+
+.delete-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.delete-btn:hover {
+    transform: scale(1.15);
+    color: #b52b27;
+}
+
+/* --- Delete Modal Settings (Hidden by default) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(14, 22, 39, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border-top: 5px solid #9D6B53;
+    max-width: 300px;
+    width: 100%;
+}
+
+.modal-content h3 { margin-top: 0; color: #0E1627; margin-bottom: 10px; }
+.modal-content p { color: #555; margin-bottom: 25px; }
+
+.button-group { display: flex; justify-content: space-between; margin-top: 20px; }
+.submit-btn, .cancel-btn {
+    border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; flex: 1; transition: background-color 0.3s;
+}
