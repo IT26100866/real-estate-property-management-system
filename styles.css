@@ -1,8 +1,6 @@
-/* General body styling with background image and fallback color */
+/* General body styling */
 body {
     font-family: Arial, sans-serif;
-    /* This line links the bg.jpg image to the background */
-    background-image: linear-gradient(rgba(255, 237, 216, 0.5), rgba(255, 237, 216, 0.5)), url('bg.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -16,22 +14,28 @@ body {
     margin: 0;
 }
 
-/* Profile Link & Circular Icon Styling */
+/* Background for Add Review Page */
+body.add-review-page {
+    background-image: linear-gradient(rgba(255, 237, 216, 0.5), rgba(255, 237, 216, 0.5)), url('bg.jpg');
+}
+
+/* Profile Link (Top Right Button) */
 .profile-link {
     position: absolute;
     top: 20px;
     right: 30px;
     background-color: #0E1627;
     color: #ffffff;
-    padding: 8px 16px;
+    padding: 10px 20px;
     text-decoration: none;
-    border-radius: 50px; /* Fully rounded/pill shape */
+    border-radius: 8px;
     font-weight: bold;
     display: inline-flex;
     align-items: center;
-    gap: 10px; /* Spacing between circle icon and text */
+    gap: 10px;
     transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    z-index: 10;
 }
 
 .profile-link:hover {
@@ -42,8 +46,8 @@ body {
 .profile-icon {
     width: 30px;
     height: 30px;
-    border-radius: 50%; /* Perfect circle */
-    background-color: #BD8E89; /* Aesthetic matching color */
+    border-radius: 50%;
+    background-color: #BD8E89;
     color: #ffffff;
     display: flex;
     align-items: center;
@@ -51,155 +55,51 @@ body {
     overflow: hidden;
 }
 
-.profile-icon svg {
-    width: 20px;
-    height: 20px;
-}
+.profile-icon svg { width: 20px; height: 20px; }
 
-/* Main container for the review form */
+/* Main Container */
 .review-container {
-    background-color: rgba(255, 255, 255, 0.95); /* Slightly translucent to blend with bg */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(14, 22, 39, 0.2);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(14, 22, 39, 0.2);
     width: 100%;
     max-width: 500px;
     border-top: 5px solid #9D6B53;
-    backdrop-filter: blur(5px); /* Soft blur effect on bg under container */
+    backdrop-filter: blur(5px);
 }
 
-/* Page title styling */
-.page-title {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #0E1627;
+/* Page title */
+.page-title { text-align: center; margin-bottom: 20px; color: #0E1627; }
+
+/* Form Styles */
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; margin-bottom: 5px; font-weight: bold; color: #0E1627; }
+.form-group select, .form-group textarea, .form-group input[type="text"] {
+    width: 100%; padding: 10px; border: 1px solid #CFAB8D; border-radius: 5px; box-sizing: border-box; font-family: inherit; background-color: #ffffff;
 }
 
-/* Form group styling for spacing */
-.form-group {
-    margin-bottom: 15px;
+/* Buttons */
+.button-group { display: flex; justify-content: space-between; margin-top: 20px; }
+.submit-btn, .cancel-btn {
+    border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; flex: 1; transition: background-color 0.3s;
 }
+.submit-btn { background-color: #9D6B53; color: #ffffff; margin-right: 10px; }
+.submit-btn:hover { background-color: #0E1627; }
+.cancel-btn { background-color: #BD8E89; color: #ffffff; margin-left: 10px; }
+.cancel-btn:hover { background-color: #CFAB8D; }
 
-/* Label styling */
-.form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #0E1627;
-}
+/* Stars for Form */
+.star-rating { font-size: 35px; cursor: pointer; user-select: none; }
+.star-rating .star { color: #d3d3d3; transition: color 0.2s ease-in-out; }
+.star-rating .star.active { color: #FFD700; }
 
-/* Input fields and textarea styling */
-.form-group select,
-.form-group textarea,
-.form-group input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #CFAB8D;
-    border-radius: 5px;
-    box-sizing: border-box;
-    font-family: inherit;
-    background-color: #ffffff;
-}
-
-/* Change border color on focus */
-.form-group select:focus,
-.form-group textarea:focus,
-.form-group input[type="text"]:focus {
-    outline: none;
-    border-color: #9D6B53;
-}
-
-/* Button group container */
-.button-group {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-/* Submit button styling */
-.submit-btn {
-    background-color: #9D6B53;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    flex: 1;
-    margin-right: 10px;
-    transition: background-color 0.3s;
-}
-
-.submit-btn:hover {
-    background-color: #0E1627;
-}
-
-/* Cancel button styling */
-.cancel-btn {
-    background-color: #BD8E89;
-    color: #ffffff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    flex: 1;
-    margin-left: 10px;
-    transition: background-color 0.3s;
-}
-
-.cancel-btn:hover {
-    background-color: #CFAB8D;
-}
-
-/* --- Star Rating Styling --- */
-.star-rating {
-    font-size: 35px;
-    cursor: pointer;
-    user-select: none;
-}
-
-.star-rating .star {
-    color: #d3d3d3; /* Unselected stars (Gray) */
-    transition: color 0.2s ease-in-out;
-}
-
-.star-rating .star.active {
-    color: #FFD700; /* Selected stars (Yellow/Gold) */
-}
-
-/* --- Custom Success Modal Styling --- */
+/* Modal Settings */
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(14, 22, 39, 0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(14, 22, 39, 0.7); display: none; justify-content: center; align-items: center; z-index: 1000;
 }
-
 .modal-content {
-    background-color: #ffffff;
-    padding: 30px 40px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    border-top: 5px solid #9D6B53;
-    max-width: 300px;
-    width: 100%;
-}
-
-.modal-content h3 {
-    margin-top: 0;
-    color: #0E1627;
-    margin-bottom: 10px;
-}
-
-.modal-content p {
-    color: #555;
-    margin-bottom: 25px;
+    background-color: #ffffff; padding: 30px 40px; border-radius: 10px; text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); border-top: 5px solid #9D6B53; max-width: 300px; width: 100%;
 }
