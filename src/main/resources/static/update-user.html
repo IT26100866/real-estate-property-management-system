@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EstateX | Update User</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="brand">
+      <a href="dashboard.html" class="logo"><svg viewBox="0 0 40 40"><path d="M4 33 L20 17 L36 33"/><path d="M9 30 V21 L20 11 L31 21 V30"/><path d="M16 30 V24 H24 V30"/></svg><span>EstateX</span></a>
+      <span class="portal-badge">Admin Portal</span>
+    </div>
+
+    <nav class="nav">
+      <p class="nav-title">Administration</p>
+      <a href="dashboard.html" data-key="dashboard"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg><span class="label">Dashboard</span></a>
+      <a href="users.html" data-key="users" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="label">User Management</span></a>
+      <a href="users.html?type=agent" data-key="agents"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span class="label">Agent Management</span></a>
+      <a href="#" data-key="properties"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span class="label">Property Management</span></a>
+      <a href="#" data-key="bookings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg><span class="label">Booking Management</span></a>
+      <a href="#" data-key="reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><span class="label">Review Management</span></a>
+
+      <p class="nav-title">System</p>
+      <a href="#" data-key="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg><span class="label">Profile</span></a>
+    </nav>
+
+    <a href="#" class="logout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg><span class="label">Logout</span></a>
+  </aside>
+
+  <main class="main">
+    <div class="form-card">
+      <h1>Update User</h1>
+
+      <form id="updateForm" action="#" method="post">
+        <div class="field">
+          <label for="userId">User ID</label>
+          <input type="text" id="userId" name="userId" value="U001" readonly>
+          <p class="hint">Read only</p>
+        </div>
+
+        <div class="field">
+          <label for="userType">User Type</label>
+          <select id="userType" name="userType">
+            <option value="ADMIN" selected>Admin</option>
+            <option value="AGENT">Agent</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" name="fullName" value="John Perera" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" value="john@email.com" required>
+        </div>
+
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" value="0771234567" pattern="0[0-9]{9}" required>
+        </div>
+
+        <!-- Admin only -->
+        <div class="field" id="roleField">
+          <label for="role">Role</label>
+          <select id="role" name="role">
+            <option value="SUPER_ADMIN">Super Admin</option>
+            <option value="MODERATOR" selected>Moderator</option>
+            <option value="SUPPORT">Support</option>
+          </select>
+        </div>
+
+        <!-- Agent only -->
+        <div class="field hidden" id="licenseField">
+          <label for="license">License Number</label>
+          <input type="text" id="license" name="licenseNumber">
+        </div>
+
+        <div class="field">
+          <label for="status">Status</label>
+          <select id="status" name="status">
+            <option value="ACTIVE" selected>Active</option>
+            <option value="INACTIVE">Inactive</option>
+            <option value="SUSPENDED">Suspended</option>
+          </select>
+        </div>
+
+        <div class="form-actions">
+          <a href="users.html" class="btn">Cancel</a>
+          <button type="submit" class="btn">Update</button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    // Show the ID from the URL, e.g. update-user.html?id=0002
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("id")) document.getElementById("userId").value = params.get("id");
+
+    // Role for Admin, License Number for Agent
+    const userType = document.getElementById("userType");
+    const roleField = document.getElementById("roleField");
+    const licenseField = document.getElementById("licenseField");
+    const license = document.getElementById("license");
+
+    function toggleFields() {
+      const isAdmin = userType.value === "ADMIN";
+      roleField.classList.toggle("hidden", !isAdmin);
+      licenseField.classList.toggle("hidden", isAdmin);
+      license.required = !isAdmin;
+    }
+    userType.addEventListener("change", toggleFields);
+    toggleFields();
+
+    document.getElementById("updateForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      // TODO (backend): fetch("/api/.../" + id, { method: "PUT", ... })
+      alert("User updated (demo). Backend connect karanna passe.");
+      window.location.href = "users.html";
+    });
+  </script>
+</body>
+</html>
