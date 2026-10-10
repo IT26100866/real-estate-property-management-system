@@ -38,7 +38,7 @@
 
     <div class="toolbar">
       <input type="search" id="searchBox" class="search" placeholder="Search by name, email or type">
-      <a href="add-user.html" class="btn">Add Admin</a>
+      <a href="add-user.html" id="addBtn" class="btn">Add Admin</a>
     </div>
 
     <div class="table-wrap">
@@ -49,33 +49,10 @@
           </tr>
         </thead>
         <tbody id="userBody">
-          <tr>
-            <td>0001</td><td>Kasun</td><td>kasun@gmail.com</td><td>Admin</td>
-            <td><span class="status active">Active</span></td>
-            <td class="actions">
-              <a href="update-user.html?id=0001" class="edit-btn">Edit</a>
-              <button class="icon-btn" data-id="0001" aria-label="Delete user"><svg viewBox="0 0 24 24"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>
-            </td>
-          </tr>
-          <tr>
-            <td>0002</td><td>Nimal</td><td>nimal@gmail.com</td><td>Agent</td>
-            <td><span class="status active">Active</span></td>
-            <td class="actions">
-              <a href="update-user.html?id=0002" class="edit-btn">Edit</a>
-              <button class="icon-btn" data-id="0002" aria-label="Delete user"><svg viewBox="0 0 24 24"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>
-            </td>
-          </tr>
-          <tr>
-            <td>0003</td><td>Sanduni</td><td>sanduni@gmail.com</td><td>Agent</td>
-            <td><span class="status inactive">Inactive</span></td>
-            <td class="actions">
-              <a href="update-user.html?id=0003" class="edit-btn">Edit</a>
-              <button class="icon-btn" data-id="0003" aria-label="Delete user"><svg viewBox="0 0 24 24"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg></button>
-            </td>
-          </tr>
+          <tr><td colspan="6">Loading...</td></tr>
         </tbody>
       </table>
-      <p class="empty" id="emptyMsg">No users match your search.</p>
+      <p class="empty" id="emptyMsg"></p>
     </div>
 
     <!-- Delete confirmation -->
@@ -90,54 +67,96 @@
     </div>
   </main>
 
+  <script src="js/api.js"></script>
   <script>
-    // ----- Search filter -----
-    const searchBox = document.getElementById("searchBox");
-    const rows = document.querySelectorAll("#userBody tr");
-    const emptyMsg = document.getElementById("emptyMsg");
+    const tbody = $("userBody");
+    const searchBox = $("searchBox");
+    const emptyMsg = $("emptyMsg");
+    const modal = $("deleteModal");
 
-    searchBox.addEventListener("input", () => {
-      const q = searchBox.value.toLowerCase().trim();
-      let visible = 0;
-      rows.forEach(r => {
-        const show = r.innerText.toLowerCase().includes(q);
-        r.style.display = show ? "" : "none";
-        if (show) visible++;
-      });
-      emptyMsg.style.display = visible === 0 ? "block" : "none";
-    });
+    const params = new URLSearchParams(window.location.search);
+    const typeParam = (params.get("type") || "").toLowerCase();   // "agent" or ""
 
-    // ----- "Agent Management" link = users.html?type=agent -----
-    const typeParam = new URLSearchParams(window.location.search).get("type");
-    if (typeParam) {
-      searchBox.value = typeParam;
-      searchBox.dispatchEvent(new Event("input"));
+    let allUsers = [];
+    let pending = null;                                           // user chosen for delete
+
+    const TRASH = '<svg viewBox="0 0 24 24"><path d="M6 19a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>';
+
+    // "Agent Management" link in the sidebar = agents only
+    if (typeParam === "agent") {
+      document.querySelector("h1").textContent = "Agents";
+      $("addBtn").textContent = "Add Agent";
+      $("addBtn").href = "add-user.html?type=agent";
       document.querySelectorAll(".nav a").forEach(a => a.classList.remove("active"));
       document.querySelector('.nav a[data-key="agents"]').classList.add("active");
     }
 
-    // ----- Delete confirmation modal -----
-    const modal = document.getElementById("deleteModal");
-    let rowToDelete = null;
+    async function loadUsers() {
+      try {
+        allUsers = await api("/api/users");
+        render();
+      } catch (err) {
+        tbody.innerHTML = `<tr><td colspan="6">Could not load users: ${esc(err.message)}</td></tr>`;
+      }
+    }
 
-    document.querySelectorAll(".icon-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        rowToDelete = btn.closest("tr");
-        modal.classList.add("open");
+    function render() {
+      const q = searchBox.value.toLowerCase().trim();
+
+      const rows = allUsers.filter(u => {
+        if (typeParam && u.type.toLowerCase() !== typeParam) return false;
+        const text = [pad(u.id), u.fullName, u.email, u.type, label(u.status)].join(" ").toLowerCase();
+        return !q || text.includes(q);
       });
+
+      tbody.innerHTML = rows.map(u => `
+        <tr>
+          <td>${pad(u.id)}</td>
+          <td>${esc(u.fullName)}</td>
+          <td>${esc(u.email)}</td>
+          <td>${esc(u.type)}</td>
+          <td><span class="status ${(u.status || "").toLowerCase()}">${label(u.status)}</span></td>
+          <td class="actions">
+            <a href="update-user.html?id=${u.id}&amp;type=${u.type.toLowerCase()}" class="edit-btn">Edit</a>
+            <button class="icon-btn" data-id="${u.id}" data-type="${u.type}" aria-label="Delete user">${TRASH}</button>
+          </td>
+        </tr>`).join("");
+
+      emptyMsg.textContent = allUsers.length === 0
+        ? "No users yet. Click the Add button to create one."
+        : "No users match your search.";
+      emptyMsg.style.display = rows.length === 0 ? "block" : "none";
+    }
+
+    searchBox.addEventListener("input", render);
+
+    // ----- Delete (open popup) -----
+    tbody.addEventListener("click", (e) => {
+      const btn = e.target.closest(".icon-btn");
+      if (!btn) return;
+      pending = { id: btn.dataset.id, type: btn.dataset.type };
+      modal.classList.add("open");
     });
 
-    document.getElementById("cancelDelete").addEventListener("click", () => {
+    $("cancelDelete").addEventListener("click", () => {
       modal.classList.remove("open");
-      rowToDelete = null;
+      pending = null;
     });
 
-    document.getElementById("confirmDelete").addEventListener("click", () => {
-      // TODO (backend): fetch("/api/..../" + id, { method: "DELETE" })
-      if (rowToDelete) rowToDelete.remove();
+    // ----- Delete (confirm) -----
+    $("confirmDelete").addEventListener("click", async () => {
+      if (!pending) return;
+      try {
+        await api(`${endpointFor(pending.type)}/${pending.id}`, { method: "DELETE" });
+      } catch (err) {
+        alert(err.message);               // e.g. "The last Super Admin cannot be removed"
+      }
       modal.classList.remove("open");
-      rowToDelete = null;
+      pending = null;
+      loadUsers();
     });
+
+    loadUsers();
   </script>
 </body>
 </html>

@@ -36,56 +36,67 @@
     <div class="form-card">
       <h1>Update User</h1>
 
-      <form id="updateForm" action="#" method="post">
+      <form id="updateForm">
         <div class="field">
           <label for="userId">User ID</label>
-          <input type="text" id="userId" name="userId" value="U001" readonly>
+          <input type="text" id="userId" name="userId" readonly>
           <p class="hint">Read only</p>
         </div>
 
         <div class="field">
           <label for="userType">User Type</label>
-          <select id="userType" name="userType">
-            <option value="ADMIN" selected>Admin</option>
+          <select id="userType" name="userType" disabled>
+            <option value="ADMIN">Admin</option>
             <option value="AGENT">Agent</option>
           </select>
         </div>
 
         <div class="field">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" minlength="3" maxlength="50" required>
+        </div>
+
+        <div class="field">
           <label for="fullName">Full Name</label>
-          <input type="text" id="fullName" name="fullName" value="John Perera" required>
+          <input type="text" id="fullName" name="fullName" required>
         </div>
 
         <div class="field">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" value="john@email.com" required>
+          <input type="email" id="email" name="email" required>
         </div>
 
         <div class="field">
           <label for="phone">Phone</label>
-          <input type="tel" id="phone" name="phone" value="0771234567" pattern="0[0-9]{9}" required>
+          <input type="tel" id="phone" name="phone" pattern="0[0-9]{9}" placeholder="0771234567" required>
+          <p class="hint">10 digits, starting with 0</p>
+        </div>
+
+        <div class="field">
+          <label for="address">Address (optional)</label>
+          <input type="text" id="address" name="address" maxlength="500">
         </div>
 
         <!-- Admin only -->
         <div class="field" id="roleField">
-          <label for="role">Role</label>
+          <label for="role">Admin Role</label>
           <select id="role" name="role">
             <option value="SUPER_ADMIN">Super Admin</option>
-            <option value="MODERATOR" selected>Moderator</option>
+            <option value="MODERATOR">Moderator</option>
             <option value="SUPPORT">Support</option>
           </select>
         </div>
 
-        <!-- Agent only -->
-        <div class="field hidden" id="licenseField">
-          <label for="license">License Number</label>
-          <input type="text" id="license" name="licenseNumber">
+        <div class="field">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" minlength="8">
+          <p class="hint">Leave blank to keep the current password</p>
         </div>
 
         <div class="field">
           <label for="status">Status</label>
           <select id="status" name="status">
-            <option value="ACTIVE" selected>Active</option>
+            <option value="ACTIVE">Active</option>
             <option value="INACTIVE">Inactive</option>
             <option value="SUSPENDED">Suspended</option>
           </select>
@@ -93,38 +104,67 @@
 
         <div class="form-actions">
           <a href="users.html" class="btn">Cancel</a>
-          <button type="submit" class="btn">Update</button>
+          <button type="submit" class="btn" id="saveBtn">Update</button>
         </div>
       </form>
     </div>
   </main>
 
+  <script src="js/api.js"></script>
   <script>
-    // Show the ID from the URL, e.g. update-user.html?id=0002
     const params = new URLSearchParams(window.location.search);
-    if (params.get("id")) document.getElementById("userId").value = params.get("id");
+    const id = params.get("id");
+    const type = (params.get("type") || "admin").toLowerCase();   // "admin" or "agent"
+    const base = endpointFor(type);
+    const isAdmin = type !== "agent";
 
-    // Role for Admin, License Number for Agent
-    const userType = document.getElementById("userType");
-    const roleField = document.getElementById("roleField");
-    const licenseField = document.getElementById("licenseField");
-    const license = document.getElementById("license");
+    $("userType").value = isAdmin ? "ADMIN" : "AGENT";
+    $("roleField").classList.toggle("hidden", !isAdmin);
 
-    function toggleFields() {
-      const isAdmin = userType.value === "ADMIN";
-      roleField.classList.toggle("hidden", !isAdmin);
-      licenseField.classList.toggle("hidden", isAdmin);
-      license.required = !isAdmin;
+    // Load the current details from the database
+    async function loadUser() {
+      if (!id) { window.location.href = "users.html"; return; }
+      try {
+        const u = await api(`${base}/${id}`);
+        $("userId").value = pad(u.id);
+        $("username").value = u.username;
+        $("fullName").value = u.fullName;
+        $("email").value = u.email;
+        $("phone").value = u.phone || "";
+        $("address").value = u.address || "";
+        $("status").value = u.status || "ACTIVE";
+        if (u.role) $("role").value = u.role;
+      } catch (err) {
+        alert(err.message);
+        window.location.href = "users.html";
+      }
     }
-    userType.addEventListener("change", toggleFields);
-    toggleFields();
 
-    document.getElementById("updateForm").addEventListener("submit", (e) => {
+    $("updateForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-      // TODO (backend): fetch("/api/.../" + id, { method: "PUT", ... })
-      alert("User updated (demo). Backend connect karanna passe.");
-      window.location.href = "users.html";
+
+      const body = {
+        username: $("username").value.trim(),
+        fullName: $("fullName").value.trim(),
+        email: $("email").value.trim(),
+        phone: $("phone").value.trim(),
+        address: $("address").value.trim() || null,
+        status: $("status").value
+      };
+      if (isAdmin) body.role = $("role").value;
+      if ($("password").value) body.password = $("password").value;   // only if a new one is typed
+
+      $("saveBtn").disabled = true;
+      try {
+        await api(`${base}/${id}`, { method: "PUT", body: JSON.stringify(body) });
+        window.location.href = "users.html";
+      } catch (err) {
+        alert(err.message);
+        $("saveBtn").disabled = false;
+      }
     });
+
+    loadUser();
   </script>
 </body>
 </html>

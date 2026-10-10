@@ -36,13 +36,18 @@
     <div class="form-card">
       <h1>Add User</h1>
 
-      <form id="addForm" action="#" method="post">
+      <form id="addForm">
         <div class="field">
           <label for="userType">User Type</label>
           <select id="userType" name="userType">
             <option value="ADMIN">Admin</option>
             <option value="AGENT">Agent</option>
           </select>
+        </div>
+
+        <div class="field">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" minlength="3" maxlength="50" required>
         </div>
 
         <div class="field">
@@ -61,20 +66,19 @@
           <p class="hint">10 digits, starting with 0</p>
         </div>
 
+        <div class="field">
+          <label for="address">Address (optional)</label>
+          <input type="text" id="address" name="address" maxlength="500">
+        </div>
+
         <!-- Admin only -->
         <div class="field" id="roleField">
-          <label for="role">Role</label>
+          <label for="role">Admin Role</label>
           <select id="role" name="role">
             <option value="SUPER_ADMIN">Super Admin</option>
             <option value="MODERATOR">Moderator</option>
             <option value="SUPPORT">Support</option>
           </select>
-        </div>
-
-        <!-- Agent only -->
-        <div class="field hidden" id="licenseField">
-          <label for="license">License Number</label>
-          <input type="text" id="license" name="licenseNumber">
         </div>
 
         <div class="field">
@@ -93,34 +97,54 @@
         </div>
 
         <div class="form-actions">
-          <button type="submit" class="btn">Add user</button>
+          <button type="submit" class="btn" id="saveBtn">Add user</button>
           <a href="users.html" class="btn">Cancel</a>
         </div>
       </form>
     </div>
   </main>
 
+  <script src="js/api.js"></script>
   <script>
-    // Show Role for Admin, License Number for Agent
-    const userType = document.getElementById("userType");
-    const roleField = document.getElementById("roleField");
-    const licenseField = document.getElementById("licenseField");
-    const license = document.getElementById("license");
+    const userType = $("userType");
 
+    // users.html?type=agent -> Agent is pre-selected
+    const typeParam = (new URLSearchParams(window.location.search).get("type") || "").toUpperCase();
+    if (typeParam === "AGENT" || typeParam === "ADMIN") userType.value = typeParam;
+
+    // Admin Role is only for admins
     function toggleFields() {
-      const isAdmin = userType.value === "ADMIN";
-      roleField.classList.toggle("hidden", !isAdmin);
-      licenseField.classList.toggle("hidden", isAdmin);
-      license.required = !isAdmin;
+      $("roleField").classList.toggle("hidden", userType.value !== "ADMIN");
     }
     userType.addEventListener("change", toggleFields);
     toggleFields();
 
-    document.getElementById("addForm").addEventListener("submit", (e) => {
+    $("addForm").addEventListener("submit", async (e) => {
       e.preventDefault();
-      // TODO (backend): fetch("/api/admins" or "/api/agents", { method: "POST", ... })
-      alert("User added (demo). Backend connect karanna passe.");
-      window.location.href = "users.html";
+      const isAdmin = userType.value === "ADMIN";
+
+      const body = {
+        username: $("username").value.trim(),
+        fullName: $("fullName").value.trim(),
+        email: $("email").value.trim(),
+        phone: $("phone").value.trim(),
+        address: $("address").value.trim() || null,
+        password: $("password").value,
+        status: $("status").value
+      };
+      if (isAdmin) body.role = $("role").value;
+
+      $("saveBtn").disabled = true;
+      try {
+        await api(isAdmin ? "/api/admins" : "/api/agents", {
+          method: "POST",
+          body: JSON.stringify(body)
+        });
+        window.location.href = "users.html";
+      } catch (err) {
+        alert(err.message);
+        $("saveBtn").disabled = false;
+      }
     });
   </script>
 </body>

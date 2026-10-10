@@ -37,12 +37,25 @@
     <p class="subtitle">Manage system administrators and agents.</p>
 
     <section class="stats">
-      <div class="stat"><p>Total Users</p><strong id="totalUsers">18</strong></div>
-      <div class="stat"><p>Admins</p><strong id="totalAdmins">5</strong></div>
-      <div class="stat"><p>Agents</p><strong id="totalAgents">13</strong></div>
+      <div class="stat"><p>Total Users</p><strong id="totalUsers">-</strong></div>
+      <div class="stat"><p>Admins</p><strong id="totalAdmins">-</strong></div>
+      <div class="stat"><p>Agents</p><strong id="totalAgents">-</strong></div>
     </section>
   </main>
 
-
+  <script src="js/api.js"></script>
+  <script>
+    // Load the real numbers from the database
+    (async () => {
+      try {
+        const s = await api("/api/dashboard/stats");
+        $("totalUsers").textContent = s.totalUsers;
+        $("totalAdmins").textContent = s.admins;
+        $("totalAgents").textContent = s.agents;
+      } catch (err) {
+        console.error(err);
+      }
+    })();
+  </script>
 </body>
 </html>
