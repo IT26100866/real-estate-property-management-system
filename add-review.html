@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Review - EstateX</title>
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="review-container">
+    <h2 class="page-title">Add Property Review</h2>
+
+    <form class="review-form" id="addReviewForm">
+
+        <!-- Auto-suggested Property Name (Readonly) -->
+        <div class="form-group">
+            <label for="property">Property Name:</label>
+            <input type="text" id="property" name="property" value="Luxury Villa - Colombo 7" readonly style="background-color: #f5f5f5; color: #555;">
+        </div>
+
+        <!-- Interactive Clickable Star Rating -->
+        <div class="form-group">
+            <label>Rating:</label>
+            <div class="star-rating" id="starRating">
+                <!-- Data-value holds the star number -->
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            <!-- Hidden input to store the selected rating value -->
+            <input type="hidden" id="rating" name="rating" value="5">
+        </div>
+
+        <!-- Text area for the review comment -->
+        <div class="form-group">
+            <label for="comment">Your Review:</label>
+            <textarea id="comment" name="comment" rows="5" placeholder="Share your experience about this property..." required></textarea>
+        </div>
+
+        <!-- Action buttons for submit and cancel -->
+        <div class="button-group">
+            <button type="submit" class="submit-btn">Submit Review</button>
+            <button type="button" class="cancel-btn">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<!-- Success Popup Modal (Hidden by default) -->
+<div id="successModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3>Success!</h3>
+        <p>Review Submitted Successfully.</p>
+        <button type="button" id="closeModalBtn" class="submit-btn" style="margin: 0;">OK</button>
+    </div>
+</div>
+
+<!-- JavaScript code for Star Rating and Custom Success Popup -->
+<script>
+    // Get star elements and hidden input
+    const stars = document.querySelectorAll('.star');
+    const ratingInput = document.getElementById('rating');
+
+    // Function to update star colors
+    function updateStars(value) {
+        stars.forEach(star => {
+            if (star.getAttribute('data-value') <= value) {
+                star.classList.add('active');
+            } else {
+                star.classList.remove('active');
+            }
+        });
+    }
+
+    // Set initial stars to 5
+    updateStars(5);
+
+    // Add click event to each star
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const value = this.getAttribute('data-value');
+            ratingInput.value = value;
+            updateStars(value);
+        });
+    });
+
+    // Form submission logic with Custom Popup
+    const modal = document.getElementById("successModal");
+    const closeBtn = document.getElementById("closeModalBtn");
+
+    document.getElementById("addReviewForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Stop page reload
+
+        // Show the custom popup
+        modal.style.display = "flex";
+
+        // Clear the form
+        document.getElementById("comment").value = "";
+        ratingInput.value = "5";
+        updateStars(5);
+    });
+
+    // Close modal when OK is clicked
+    closeBtn.addEventListener("click", function() {
+        modal.style.display = "none";
+    });
+</script>
+
+</body>
+</html>
