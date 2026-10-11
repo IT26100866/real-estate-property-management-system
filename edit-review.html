@@ -29,15 +29,17 @@
         <div class="rating-section">
             <div class="rating-header">
                 <label class="rating-label">Overall Rating</label>
-                <div class="star-rating">
-                    <span class="star active">★</span>
-                    <span class="star active">★</span>
-                    <span class="star active">★</span>
-                    <span class="star active">★</span>
-                    <span class="star">☆</span>
+                <div class="star-rating" id="starRating">
+                    <span class="star active" data-value="1">★</span>
+                    <span class="star active" data-value="2">★</span>
+                    <span class="star active" data-value="3">★</span>
+                    <span class="star active" data-value="4">★</span>
+                    <span class="star" data-value="5">☆</span>
                 </div>
             </div>
-            <div class="rating-subtext">Rating: 4.0 / 5</div>
+            <div class="rating-subtext" id="ratingDisplay">Rating: 4.0 / 5</div>
+            <!-- Backend එකට රේටින් එක යවන්න මේක ඕනේ -->
+            <input type="hidden" id="selectedRating" name="rating" value="4">
         </div>
 
         <!-- Comment Area -->
@@ -65,6 +67,30 @@
 </div>
 
 <script>
+    // Star Rating Click Logic
+    const stars = document.querySelectorAll('#starRating .star');
+    const ratingInput = document.getElementById('selectedRating');
+    const ratingDisplay = document.getElementById('ratingDisplay');
+
+    stars.forEach(star => {
+        star.addEventListener('click', function() {
+            const ratingValue = this.getAttribute('data-value');
+            ratingInput.value = ratingValue; // Update hidden input
+            ratingDisplay.textContent = `Rating: ${ratingValue}.0 / 5`; // Update text
+
+            // Update stars visually
+            stars.forEach(s => {
+                if (s.getAttribute('data-value') <= ratingValue) {
+                    s.classList.add('active');
+                    s.textContent = '★'; // Filled star
+                } else {
+                    s.classList.remove('active');
+                    s.textContent = '☆'; // Empty star
+                }
+            });
+        });
+    });
+
     // Character Count Calculation
     const commentInput = document.getElementById('reviewComment');
     const charCountDisplay = document.getElementById('charCount');
