@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Property</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { max-width: 500px; background: white; padding: 20px; margin: auto; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        .btn { background-color: #b88675; color: white; padding: 10px; width: 100%; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        .btn:hover { background-color: #9f6f5f; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Book Property Viewing</h2>
+    <form action="/api/bookings/create" method="POST">
+        <input type="hidden" name="customerId" value="1">
+        <input type="hidden" name="propertyId" value="1">
+
+        <div class="form-group">
+            <label>Viewing Date</label>
+            <input type="date" name="viewingDate" required>
+        </div>
+
+        <div class="form-group">
+            <label>Time Slot</label>
+            <select name="timeSlot" required>
+                <option value="10:00:00">10:00 AM</option>
+                <option value="14:00:00">02:00 PM</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn">Confirm Booking</button>
+    </form>
+</div>
+
+</body>
+</html>
+
