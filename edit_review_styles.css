@@ -1,0 +1,230 @@
+/* Background & Body Styling */
+body.edit-page {
+    /* Using the new background image */
+    background-image: url('bg-edit.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #FFEDD8;
+    color: #0E1627;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Glassmorphism Form Container */
+.edit-container {
+    background-color: rgba(255, 255, 255, 0.85);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(14, 22, 39, 0.15);
+    width: 100%;
+    max-width: 420px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Page Title */
+.page-title {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    color: #0E1627;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+/* Property Info Box (Image and Name) */
+.property-info {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* Placeholder box for the property image */
+.property-img-placeholder {
+    width: 60px;
+    height: 60px;
+    background-color: #f0e9e1;
+    border: 1.5px dashed #bd8e89;
+    border-radius: 8px;
+    margin-right: 15px;
+}
+
+.property-details .prop-label {
+    font-size: 13px;
+    color: #666;
+}
+
+.property-details .prop-name {
+    font-size: 15px;
+    font-weight: bold;
+    color: #0E1627;
+}
+
+/* Rating Area */
+.rating-section {
+    margin-bottom: 15px;
+}
+
+.rating-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rating-label {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.star-rating .star {
+    color: #d3d3d3;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.star-rating .star.active {
+    color: #d4a017;
+}
+
+.rating-subtext {
+    font-size: 12px;
+    color: #666;
+    margin-top: 2px;
+}
+
+/* Comment Area */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.comment-label {
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: inherit;
+    resize: none;
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #9D6B53;
+}
+
+.char-count {
+    text-align: right;
+    font-size: 12px;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Buttons */
+.button-group-edit {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.cancel-btn-outline {
+    flex: 1;
+    background-color: transparent;
+    color: #9D6B53;
+    border: 2px solid #9D6B53;
+    padding: 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    transition: all 0.3s;
+}
+
+.cancel-btn-outline:hover {
+    background-color: rgba(157, 107, 83, 0.1);
+}
+
+.update-btn {
+    flex: 1;
+    background-color: #0E1627;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.update-btn:hover {
+    background-color: #1a2744;
+    transform: translateY(-2px);
+}
+
+/* Centered Success Modal Styles */
+.success-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(14, 22, 39, 0.4);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.success-box {
+    background-color: white;
+    padding: 30px 50px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tick-circle {
+    width: 50px;
+    height: 50px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin: 0 auto 15px auto;
+}
+
+.success-box h3 {
+    margin: 0;
+    color: #0E1627;
+    font-size: 18px;
+}
+
+/* Animation for the success popup */
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
