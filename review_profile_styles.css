@@ -1,161 +1,143 @@
-/* ==========================================================
-   Background & Body Styling
-   ================================================---------- */
+/* Body with Background Image */
 body.profile-page {
-    background-image: url('bg-edit.jpg');
+    background-image: url('bg-profile.jpg'); /* Update filename if your background image name is different */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-color: #FFEDD8;
-    color: #0E1627;
     margin: 0;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* Dashboard Layout Structure */
+.dashboard-layout {
     display: flex;
-    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    background: transparent;
+}
+
+/* Main Content Area */
+.dashboard-main {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
+    background: transparent;
 }
 
-/* ==========================================================
-   Top Navigation Button
-   ================================================---------- */
-.top-nav {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-}
-
-.add-review-top-btn {
-    background-color: #0E1627;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.add-review-top-btn:hover {
-    background-color: #1a2744;
-}
-
-/* ==========================================================
-   Profile Container & Layout
-   ================================================---------- */
-.profile-container {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(14, 22, 39, 0.15);
-    width: 90%;
-    max-width: 700px;
+/* Glassmorphism Profile Container - Centered */
+.review-container.profile-container {
+    background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
+/* Page Title and Divider */
 .page-title {
-    margin-top: 0;
-    margin-bottom: 5px;
-    color: #0E1627;
     font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 10px;
 }
 
 .title-divider {
     border: none;
     height: 2px;
-    background-color: #9D6B53;
+    background-color: #d4a373;
     margin-bottom: 20px;
 }
 
 .section-subtitle {
     font-size: 18px;
+    font-weight: 600;
+    color: #333333;
     margin-bottom: 15px;
-    color: #0E1627;
 }
 
-/* ==========================================================
-   Review Table Styles
-   ================================================---------- */
+/* Review Table Styles */
 .review-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: white;
+    background: #ffffff;
     border-radius: 8px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .review-table th {
-    background-color: #0E1627;
-    color: white;
-    padding: 12px 15px;
+    background-color: #111827;
+    color: #ffffff;
+    padding: 12px 16px;
     text-align: left;
     font-size: 14px;
+    font-weight: 600;
 }
 
 .review-table td {
-    padding: 12px 15px;
-    border-bottom: 1px solid #eee;
+    padding: 14px 16px;
+    border-bottom: 1px solid #e5e7eb;
+    color: #374151;
     font-size: 14px;
-    color: #333;
 }
 
+.review-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Stars Display */
 .stars-display {
-    color: #d4a017;
+    color: #f59e0b;
     letter-spacing: 2px;
 }
 
-/* ==========================================================
-   Table Action Buttons (Edit & Delete)
-   ================================================---------- */
+/* Action Buttons */
 .edit-btn {
-    background-color: #4CAF50;
+    background-color: #22c55e;
     color: white;
     border: none;
     padding: 6px 14px;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
-    font-weight: bold;
-    font-size: 14px;
-    margin-right: 5px;
-    transition: background-color 0.2s;
+    font-weight: 500;
+    transition: background 0.2s;
 }
 
 .edit-btn:hover {
-    background-color: #43a047;
+    background-color: #16a34a;
 }
 
-/* Updated Delete Button styled identically to Edit button */
 .delete-btn {
-    background-color: #d9534f !important;
-    color: white !important;
-    border: none !important;
-    padding: 6px 14px !important;
-    border-radius: 5px !important;
-    cursor: pointer !important;
-    font-weight: bold !important;
-    font-size: 14px !important;
-    display: inline-block !important;
-    transition: background-color 0.2s;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s;
+    margin-left: 6px;
 }
 
 .delete-btn:hover {
-    background-color: #c9302c !important;
+    background-color: #dc2626;
 }
 
-/* ==========================================================
-   Modal Overlays & Popups (Centered)
-   ================================================---------- */
+/* Success / Delete Modals Overlay */
 .success-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(14, 22, 39, 0.4);
-    backdrop-filter: blur(5px);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -163,75 +145,68 @@ body.profile-page {
 }
 
 .success-box {
-    background-color: white;
-    padding: 30px 40px;
+    background: white;
+    padding: 30px;
     border-radius: 12px;
     text-align: center;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-    min-width: 300px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    width: 320px;
+}
+
+.tick-circle {
+    width: 50px;
+    height: 50px;
+    background-color: #22c55e;
+    color: white;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin: 0 auto 15px auto;
+}
+
+.delete-confirm-box h3 {
+    margin-top: 0;
+    color: #1f2937;
 }
 
 .delete-confirm-box p {
-    color: #555;
+    color: #4b5563;
     font-size: 14px;
     margin-bottom: 20px;
 }
 
-/* Gap between Delete and Cancel buttons */
 .delete-modal-buttons {
     display: flex;
-    justify-content: space-between;
-    gap: 15px;
+    justify-content: center;
+    gap: 10px;
 }
 
 .btn-delete-action {
-    flex: 1;
-    background-color: #d9534f;
+    background-color: #ef4444;
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 20px;
-    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    font-weight: 500;
 }
 
 .btn-delete-action:hover {
-    background-color: #c9302c;
+    background-color: #dc2626;
 }
 
 .btn-cancel-action {
-    flex: 1;
-    background-color: #0E1627;
-    color: white;
+    background-color: #e5e7eb;
+    color: #374151;
     border: none;
-    padding: 10px;
-    border-radius: 20px;
-    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    font-weight: 500;
 }
 
 .btn-cancel-action:hover {
-    background-color: #1a2744;
-}
-
-/* Success Tick Icon Styling */
-.tick-circle {
-    width: 50px;
-    height: 50px;
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    margin: 0 auto 15px auto;
-}
-
-.success-box h3 {
-    margin: 0;
-    color: #0E1627;
-    font-size: 18px;
+    background-color: #d1d5db;
 }
