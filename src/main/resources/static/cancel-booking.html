@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cancel Booking</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f4f4; padding: 20px; }
+        .container { max-width: 400px; background: white; padding: 20px; margin: auto; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); text-align: center; }
+        h2 { color: #d9534f; }
+        p { color: #555; }
+        .btn-danger { background-color: #d9534f; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%; margin-top: 15px; }
+        .btn-danger:hover { background-color: #c9302c; }
+        .btn-secondary { background-color: #6c757d; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; width: 100%; margin-top: 10px; text-decoration: none; display: inline-block; box-sizing: border-box; }
+        .btn-secondary:hover { background-color: #5a6268; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Cancel Booking</h2>
+    <p>Are you sure you want to cancel your booking for <strong>Modern 3-Bedroom House</strong>?</p>
+
+    <!-- Booking ID එක ලබා ගැනීම සඳහා hidden input එකක් -->
+    <input type="hidden" id="bookingId" value="1">
+
+    <!-- Button එක ක්ලික් කළ විට cancelBooking function එක ක්‍රියාත්මක වේ -->
+    <button type="button" class="btn-danger" onclick="cancelBooking()">Yes, Cancel Booking</button>
+    <a href="my-bookings.html" class="btn-secondary">No, Go Back</a>
+</div>
+
+<script>
+    function cancelBooking() {
+        let bookingId = document.getElementById("bookingId").value;
+
+        if (confirm("Are you sure you want to cancel this booking?")) {
+            // Backend API එකට Fetch හරහා ඉල්ලීම යැවීම
+            fetch(`http://localhost:8080/api/bookings/cancel/${bookingId}`)
+                .then(response => {
+                    alert("Booking cancelled successfully!");
+                    window.location.href = "my-bookings.html"; // සාර්ථක වූ පසු වෙනත් පිටුවකට යාම
+                })
+                .catch(error => {
+                    console.error("Error cancelling booking:", error);
+                    alert("Failed to cancel booking.");
+                });
+        }
+    }
+</script>
+
+</body>
+</html>
