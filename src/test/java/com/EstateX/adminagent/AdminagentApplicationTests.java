@@ -1,0 +1,13 @@
+package com.estatex.adminagent;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class AdminagentApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

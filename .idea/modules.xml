@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Backend/Backend.iml" filepath="$PROJECT_DIR$/Backend/Backend.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/real-estate-property-management-system.iml" filepath="$PROJECT_DIR$/.idea/real-estate-property-management-system.iml" />
+      <module fileurl="file://$PROJECT_DIR$/adminagent.iml" filepath="$PROJECT_DIR$/adminagent.iml" />
     </modules>
   </component>
 </project>
