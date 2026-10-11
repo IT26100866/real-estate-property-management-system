@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Property Details | EstateX</title>
+
+    <link rel="stylesheet" href="view-property.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<!-- Navigation -->
+<header class="navbar">
+
+    <a href="index.html" class="brand">
+        <i class="fa-solid fa-house-chimney-window"></i>
+
+        <span>Estate<span class="brand-highlight">X</span></span>
+    </a>
+
+    <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="index.html#about">About Us</a>
+        <a href="index.html#contact">Contact Us</a>
+        <a href="index.html#profile">Profile</a>
+    </nav>
+
+    <a href="index.html" class="logout-button">Log Out</a>
+
+</header>
+
+
+<!-- Main Property Page -->
+<main class="page-container">
+
+    <!-- Back Navigation -->
+    <div class="page-top">
+        <button type="button"
+                class="back-button"
+                id="backButton"
+                aria-label="Go back">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+        </button>
+
+        <div>
+            <p class="breadcrumb">Properties / Property Details</p>
+            <p class="page-subtitle">Explore your next home</p>
+        </div>
+    </div>
+
+
+    <!-- Property Content -->
+    <section class="property-layout">
+
+        <!-- LEFT: Property Images -->
+        <div class="gallery-section">
+
+            <div class="main-image-wrapper">
+
+                <img
+                        id="mainPropertyImage"
+                        class="main-property-image"
+                        src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=1200&q=85"
+                        alt="Modern apartment building"
+                >
+
+                <span class="image-badge">
+                        <i class="fa-regular fa-images"></i>
+                        Property Gallery
+                    </span>
+
+                <button
+                        type="button"
+                        class="image-arrow image-prev"
+                        id="prevImage"
+                        aria-label="Previous image">
+
+                    <i class="fa-solid fa-chevron-left"></i>
+
+                </button>
+
+                <button
+                        type="button"
+                        class="image-arrow image-next"
+                        id="nextImage"
+                        aria-label="Next image">
+
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                </button>
+
+            </div>
+
+
+            <!-- Thumbnail Gallery -->
+            <div class="thumbnail-gallery">
+
+                <button class="thumbnail active"
+                        type="button"
+                        data-image="0"
+                        aria-label="Show exterior image">
+
+                    <img
+                            src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=250&q=75"
+                            alt="Building exterior">
+                </button>
+
+                <button class="thumbnail"
+                        type="button"
+                        data-image="1"
+                        aria-label="Show living room">
+
+                    <img
+                            src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=250&q=75"
+                            alt="Modern living room">
+                </button>
+
+                <button class="thumbnail"
+                        type="button"
+                        data-image="2"
+                        aria-label="Show kitchen">
+
+                    <img
+                            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=250&q=75"
+                            alt="Modern interior">
+                </button>
+
+                <button class="thumbnail"
+                        type="button"
+                        data-image="3"
+                        aria-label="Show bedroom">
+
+                    <img
+                            src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=250&q=75"
+                            alt="Bedroom interior">
+                </button>
+
+            </div>
+
+
+            <!-- Property Features -->
+            <section class="features-section">
+
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">PROPERTY HIGHLIGHTS</span>
+                        <h2>Property Features</h2>
+                    </div>
+
+                    <i class="fa-solid fa-list-check heading-icon"></i>
+                </div>
+
+                <div class="features-grid">
+
+                    <div class="feature-item">
+                            <span class="feature-icon">
+                                <i class="fa-solid fa-utensils"></i>
+                            </span>
+
+                        <span>Modern Kitchen</span>
+                    </div>
+
+                    <div class="feature-item">
+                            <span class="feature-icon">
+                                <i class="fa-solid fa-building"></i>
+                            </span>
+
+                        <span>Balcony</span>
+                    </div>
+
+                    <div class="feature-item">
+                            <span class="feature-icon">
+                                <i class="fa-solid fa-car"></i>
+                            </span>
+
+                        <span>Parking Space</span>
+                    </div>
+
+                    <div class="feature-item">
+                            <span class="feature-icon">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </span>
+
+                        <span>24/7 Security</span>
+                    </div>
+
+                    <div class="feature-item">
+                            <span class="feature-icon">
+                                <i class="fa-solid fa-water-ladder"></i>
+                            </span>
+
+                        <span>Swimming Pool</span>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+
+        <!-- RIGHT: Property Information -->
+        <div class="information-section">
+
+            <div class="property-heading">
+
+                <div>
+                        <span class="property-category" id="propertyCategory">
+                            APARTMENT
+                        </span>
+
+                    <h1 id="propertyName">Modern Apartment</h1>
+                </div>
+
+                <button
+                        type="button"
+                        id="favoriteButton"
+                        class="favorite-button"
+                        aria-label="Add to favorites"
+                        aria-pressed="false">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </button>
+
+            </div>
+
+
+            <!-- Location -->
+            <p class="property-location">
+
+                <i class="fa-solid fa-location-dot"></i>
+
+                <span id="propertyLocation">Colombo, Sri Lanka</span>
+
+            </p>
+
+
+            <!-- Price and Status -->
+            <div class="price-status-row">
+
+                <div class="price-block">
+
+                    <span class="small-label">PROPERTY PRICE</span>
+
+                    <h2 id="propertyPrice">Rs. 25,000,000</h2>
+
+                </div>
+
+                <span class="status-badge" id="propertyStatus">
+                        <i class="fa-solid fa-circle-check"></i>
+                        Available
+                    </span>
+
+            </div>
+
+
+            <!-- Main Statistics -->
+            <div class="property-stats">
+
+                <div class="stat-item">
+
+                    <i class="fa-solid fa-bed"></i>
+
+                    <div>
+                        <strong id="bedroomCount">2</strong>
+                        <span>Bedrooms</span>
+                    </div>
+
+                </div>
+
+                <div class="stat-item">
+
+                    <i class="fa-solid fa-bath"></i>
+
+                    <div>
+                        <strong id="bathroomCount">2</strong>
+                        <span>Bathrooms</span>
+                    </div>
+
+                </div>
+
+                <div class="stat-item">
+
+                    <i class="fa-solid fa-ruler-combined"></i>
+
+                    <div>
+                        <strong id="propertyArea">1,200</strong>
+                        <span>Sq. Ft.</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Description -->
+            <section class="description-section">
+
+                <div class="section-heading">
+                    <h2>About This Property</h2>
+                </div>
+
+                <p id="propertyDescription">
+
+                    A beautiful modern apartment located in the heart
+                    of Colombo. Close to shopping malls, schools and
+                    public transport. Perfect for small families or
+                    professionals.
+
+                </p>
+
+            </section>
+
+
+            <!-- Agent Information -->
+            <section class="agent-card">
+
+                <div class="agent-avatar">
+
+                    <i class="fa-solid fa-user-tie"></i>
+
+                </div>
+
+                <div class="agent-details">
+
+                    <span class="small-label">PROPERTY AGENT</span>
+
+                    <h3 id="agentName">John Perera</h3>
+
+                    <p>Verified Property Agent</p>
+
+                    <div class="agent-contact">
+
+                            <span>
+                                <i class="fa-solid fa-phone"></i>
+                                <span id="agentPhone">071 0000000</span>
+                            </span>
+
+                        <span>
+                                <i class="fa-solid fa-envelope"></i>
+                                <span id="agentEmail">agent@example.com</span>
+                            </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </section>
+
+
+    <!-- Action Buttons -->
+    <section class="action-section">
+
+        <div class="action-intro">
+
+            <h2>Interested in this property?</h2>
+
+            <p>
+                Contact our agent or schedule a visit to explore
+                your future home.
+            </p>
+
+        </div>
+
+        <div class="action-buttons">
+
+            <button
+                    type="button"
+                    class="action-button primary-button"
+                    id="bookButton">
+
+                <i class="fa-regular fa-calendar-check"></i>
+
+                <span>Book Viewing</span>
+
+            </button>
+
+
+            <button
+                    type="button"
+                    class="action-button secondary-button"
+                    id="inquiryButton">
+
+                <i class="fa-regular fa-envelope"></i>
+
+                <span>Send Inquiry</span>
+
+            </button>
+
+
+            <button
+                    type="button"
+                    class="action-button secondary-button"
+                    id="reviewButton">
+
+                <i class="fa-regular fa-star"></i>
+
+                <span>Write a Review</span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- Footer -->
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <a href="index.html" class="brand footer-brand">
+
+            <i class="fa-solid fa-house-chimney-window"></i>
+
+            <span>Estate<span class="brand-highlight">X</span></span>
+
+        </a>
+
+        <div class="footer-column">
+
+            <h3>Navigation</h3>
+
+            <a href="index.html">Home</a>
+            <a href="index.html#about">About Us</a>
+            <a href="index.html#contact">Contact Us</a>
+
+        </div>
+
+        <div class="footer-column">
+
+            <h3>Get In Touch</h3>
+
+            <p>
+                <i class="fa-regular fa-envelope"></i>
+                info@estatex.com
+            </p>
+
+            <p>
+                <i class="fa-solid fa-phone"></i>
+                +94 11 123 4567
+            </p>
+
+            <p>
+                <i class="fa-solid fa-location-dot"></i>
+                Colombo, Sri Lanka
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <p>&copy; 2026 EstateX. All rights reserved.</p>
+
+    </div>
+
+</footer>
+
+
+<!-- Modal Overlay -->
+<div class="modal-overlay" id="actionModal" hidden>
+
+    <section
+            class="modal-card"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modalTitle">
+
+        <button
+                type="button"
+                class="modal-close"
+                id="closeModal"
+                aria-label="Close form">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+        <div class="modal-heading-icon" id="modalIcon">
+
+            <i class="fa-regular fa-calendar-check"></i>
+
+        </div>
+
+        <h2 id="modalTitle">Book Property Viewing</h2>
+
+        <p class="modal-subtitle" id="modalSubtitle">
+            Complete the form below to submit your request.
+        </p>
+
+
+        <form id="actionForm">
+
+            <div id="formFields"></div>
+
+            <button
+                    type="submit"
+                    class="modal-submit"
+                    id="submitButton">
+
+                Submit Request
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </button>
+
+            <p id="formMessage" role="status" aria-live="polite"></p>
+
+        </form>
+
+    </section>
+
+</div>
+
+
+<script src="view-property.js"></script>
+
+</body>
+
+</html>

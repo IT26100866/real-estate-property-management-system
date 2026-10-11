@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EstateX - Find Your Perfect Property</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= NAVIGATION BAR ================= -->
+
+<header class="navbar">
+
+    <a href="#home" class="logo">
+        <span class="logo-icon">⌂</span>
+        <span class="logo-text">EstateX</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact Us</a>
+        <a href="property.html">My Listings</a>
+        <a href="#login" class="login-button">Log In</a>
+    </nav>
+
+    <button class="menu-button" id="menuButton"
+            aria-label="Toggle navigation">☰</button>
+
+</header>
+
+
+<!-- ================= HERO SECTION ================= -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>Find Your Perfect Property</h1>
+
+        <p>
+            Discover homes, apartments, lands, and
+            commercial properties with EstateX.
+        </p>
+
+        <a href="#featured" class="primary-button">
+            Explore Properties
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ================= PROPERTY SEARCH ================= -->
+
+<section class="search-section" id="search">
+
+    <div class="section-heading">
+
+        <h2>Find Your Property</h2>
+
+        <p>Search for a property that suits your needs.</p>
+
+    </div>
+
+    <form id="searchForm" class="search-form">
+
+        <input
+                type="number"
+                id="searchId"
+                placeholder="Property ID"
+                min="1"
+        >
+
+        <input
+                type="text"
+                id="searchLocation"
+                placeholder="Enter location"
+        >
+
+        <select id="searchType">
+
+            <option value="">All Property Types</option>
+            <option value="House">House</option>
+            <option value="Apartment">Apartment</option>
+            <option value="Land">Land</option>
+            <option value="Commercial">Commercial</option>
+
+        </select>
+
+        <button type="submit" class="primary-button">
+            Search
+        </button>
+
+        <button type="button" id="resetSearch"
+                class="secondary-button">
+            Reset
+        </button>
+
+    </form>
+
+</section>
+
+
+<!-- ================= PROPERTY CATEGORIES ================= -->
+
+<section class="categories-section" id="categories">
+
+    <div class="section-heading">
+
+        <h2>Explore Property Categories</h2>
+
+        <p>Choose the property type you are looking for.</p>
+
+    </div>
+
+    <div class="category-grid">
+
+        <button class="category-card" data-category="House">
+            <span class="category-icon">🏠</span>
+            <h3>Houses</h3>
+            <p>Find your dream home.</p>
+        </button>
+
+        <button class="category-card" data-category="Apartment">
+            <span class="category-icon">🏢</span>
+            <h3>Apartments</h3>
+            <p>Explore modern apartments.</p>
+        </button>
+
+        <button class="category-card" data-category="Land">
+            <span class="category-icon">🌳</span>
+            <h3>Lands</h3>
+            <p>Discover land opportunities.</p>
+        </button>
+
+        <button class="category-card" data-category="Commercial">
+            <span class="category-icon">🏬</span>
+            <h3>Commercial</h3>
+            <p>Find commercial properties.</p>
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURED PROPERTIES ================= -->
+
+<section class="featured-section" id="featured">
+
+    <div class="featured-header">
+
+        <div class="section-heading">
+
+            <h2>Featured Properties</h2>
+
+            <p>Explore available properties on EstateX.</p>
+
+        </div>
+
+        <a href="property.html" class="outline-button">
+            Manage Listings
+        </a>
+
+    </div>
+
+
+    <!-- Property cards will be generated using JavaScript -->
+
+    <div class="property-grid" id="propertyGrid">
+
+    </div>
+
+
+    <div class="empty-message" id="emptyMessage" hidden>
+
+        <h3>No Properties Found</h3>
+
+        <p>Try another location, ID or property type.</p>
+
+        <button type="button" id="showAllButton"
+                class="primary-button">
+            Show All Properties
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= WHY CHOOSE US ================= -->
+
+<section class="about-section" id="about">
+
+    <div class="section-heading">
+
+        <h2>Why Choose EstateX?</h2>
+
+        <p>Your trusted platform for finding the right property.</p>
+
+    </div>
+
+    <div class="benefits-grid">
+
+        <article class="benefit-card">
+
+            <div class="benefit-icon">🔍</div>
+
+            <h3>Easy Search</h3>
+
+            <p>
+                Search properties by ID, location and property type.
+            </p>
+
+        </article>
+
+        <article class="benefit-card">
+
+            <div class="benefit-icon">🏡</div>
+
+            <h3>Property Choices</h3>
+
+            <p>
+                Explore houses, apartments, lands and commercial spaces.
+            </p>
+
+        </article>
+
+        <article class="benefit-card">
+
+            <div class="benefit-icon">📋</div>
+
+            <h3>Property Details</h3>
+
+            <p>
+                View prices, descriptions, features and availability.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CALL TO ACTION ================= -->
+
+<section class="cta-section">
+
+    <div>
+
+        <h2>Ready to Find Your Property?</h2>
+
+        <p>Explore the available listings on EstateX today.</p>
+
+    </div>
+
+    <a href="#featured" class="cta-button">
+        View Properties
+    </a>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer" id="contact">
+
+    <div class="footer-content">
+
+        <div class="footer-brand">
+
+            <a href="#home" class="logo footer-logo">
+                <span class="logo-icon">⌂</span>
+                <span class="logo-text">EstateX</span>
+            </a>
+
+            <p>
+                Discover your next home with EstateX.
+                Your property search starts here.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Navigation</h3>
+
+            <a href="#home">Home</a>
+            <a href="#about">About Us</a>
+            <a href="#categories">Categories</a>
+            <a href="#contact">Contact Us</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Properties</h3>
+
+            <a href="#featured">Featured Properties</a>
+            <a href="#search">Search Properties</a>
+            <a href="property.html">Manage Listings</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>Get In Touch</h3>
+
+            <p>Email: info@estatex.com</p>
+            <p>Phone: +94 11 234 5678</p>
+
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+
+        <p>
+            &copy; <span id="currentYear"></span> EstateX.
+            All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<!-- ================= PROPERTY DETAILS MODAL ================= -->
+
+<div class="modal" id="propertyModal"
+     role="dialog"
+     aria-modal="true"
+     aria-labelledby="modalTitle"
+     hidden>
+
+    <div class="modal-content">
+
+        <button type="button" class="close-modal"
+                id="closeModal"
+                aria-label="Close property details">
+            &times;
+        </button>
+
+        <div id="modalDetails"></div>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
