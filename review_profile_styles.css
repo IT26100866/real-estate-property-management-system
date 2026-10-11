@@ -1,0 +1,237 @@
+/* ==========================================================
+   Background & Body Styling
+   ================================================---------- */
+body.profile-page {
+    background-image: url('bg-edit.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-color: #FFEDD8;
+    color: #0E1627;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ==========================================================
+   Top Navigation Button
+   ================================================---------- */
+.top-nav {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+}
+
+.add-review-top-btn {
+    background-color: #0E1627;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-review-top-btn:hover {
+    background-color: #1a2744;
+}
+
+/* ==========================================================
+   Profile Container & Layout
+   ================================================---------- */
+.profile-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(14, 22, 39, 0.15);
+    width: 90%;
+    max-width: 700px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.page-title {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #0E1627;
+    font-size: 24px;
+}
+
+.title-divider {
+    border: none;
+    height: 2px;
+    background-color: #9D6B53;
+    margin-bottom: 20px;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #0E1627;
+}
+
+/* ==========================================================
+   Review Table Styles
+   ================================================---------- */
+.review-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.review-table th {
+    background-color: #0E1627;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.review-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+    color: #333;
+}
+
+.stars-display {
+    color: #d4a017;
+    letter-spacing: 2px;
+}
+
+/* ==========================================================
+   Table Action Buttons (Edit & Delete)
+   ================================================---------- */
+.edit-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    margin-right: 5px;
+    transition: background-color 0.2s;
+}
+
+.edit-btn:hover {
+    background-color: #43a047;
+}
+
+/* Updated Delete Button styled identically to Edit button */
+.delete-btn {
+    background-color: #d9534f !important;
+    color: white !important;
+    border: none !important;
+    padding: 6px 14px !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    font-weight: bold !important;
+    font-size: 14px !important;
+    display: inline-block !important;
+    transition: background-color 0.2s;
+}
+
+.delete-btn:hover {
+    background-color: #c9302c !important;
+}
+
+/* ==========================================================
+   Modal Overlays & Popups (Centered)
+   ================================================---------- */
+.success-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(14, 22, 39, 0.4);
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.success-box {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    min-width: 300px;
+}
+
+.delete-confirm-box p {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+/* Gap between Delete and Cancel buttons */
+.delete-modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.btn-delete-action {
+    flex: 1;
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-delete-action:hover {
+    background-color: #c9302c;
+}
+
+.btn-cancel-action {
+    flex: 1;
+    background-color: #0E1627;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-cancel-action:hover {
+    background-color: #1a2744;
+}
+
+/* Success Tick Icon Styling */
+.tick-circle {
+    width: 50px;
+    height: 50px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin: 0 auto 15px auto;
+}
+
+.success-box h3 {
+    margin: 0;
+    color: #0E1627;
+    font-size: 18px;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Review - EstateX</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="edit_review_styles.css">
+</head>
+<body class="edit-page">
+
+<!-- Glassmorphism Form Container -->
+<div class="review-container edit-container">
+    <h2 class="page-title">Edit Review</h2>
+
+    <form id="editReviewForm">
+        <!-- Property Info Box -->
+        <div class="property-info">
+            <!-- Placeholder for the Property Image -->
+            <div class="property-img-placeholder"></div>
+            <div class="property-details">
+                <span class="prop-label">Property:</span><br>
+                <!-- Displaying the property name for ID R001 -->
+                <span class="prop-name">Luxury Villa - Colombo 7</span>
+            </div>
+        </div>
+
+        <!-- Rating Area -->
+        <div class="rating-section">
+            <div class="rating-header">
+                <label class="rating-label">Overall Rating</label>
+                <div class="star-rating">
+                    <span class="star active">★</span>
+                    <span class="star active">★</span>
+                    <span class="star active">★</span>
+                    <span class="star active">★</span>
+                    <span class="star">☆</span>
+                </div>
+            </div>
+            <div class="rating-subtext">Rating: 4.0 / 5</div>
+        </div>
+
+        <!-- Comment Area -->
+        <div class="form-group">
+            <label class="comment-label">Your Review Comments:</label>
+            <!-- Empty textarea for new comments -->
+            <textarea id="reviewComment" rows="5" placeholder=""></textarea>
+            <div class="char-count" id="charCount">0 / 1000</div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-group-edit">
+            <button type="button" class="cancel-btn-outline" onclick="window.location.href='review-profile.html'">Cancel</button>
+            <button type="submit" class="update-btn">Update</button>
+        </div>
+    </form>
+</div>
+
+<!-- Centered Success Message Modal -->
+<div id="successModal" class="success-overlay">
+    <div class="success-box">
+        <div class="tick-circle">✔</div>
+        <h3>Updated successfully</h3>
+    </div>
+</div>
+
+<script>
+    // Character Count Calculation
+    const commentInput = document.getElementById('reviewComment');
+    const charCountDisplay = document.getElementById('charCount');
+
+    commentInput.addEventListener('input', function() {
+        const currentLength = this.value.length;
+        charCountDisplay.textContent = currentLength + " / 1000";
+    });
+
+    // Handle Form Submission and Show Success Message
+    const editReviewForm = document.getElementById('editReviewForm');
+    const successModal = document.getElementById('successModal');
+
+    editReviewForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Prevent default form submission (page refresh)
+
+        // Show the centered success popup
+        successModal.style.display = 'flex';
+
+        // Redirect to the Review Profile page after 2.5 seconds
+        setTimeout(() => {
+            successModal.style.display = 'none';
+            window.location.href = 'review-profile.html';
+        }, 2500);
+    });
+</script>
+</body>
+</html>
