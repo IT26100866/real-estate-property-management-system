@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Real Estate Property Management System</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; background-color: #f4f4f9; }
+        .container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); max-width: 700px; margin: auto; }
+        input, button { margin: 8px 0; padding: 8px; width: 100%; box-sizing: border-box; }
+        button { background-color: #007bff; color: white; border: none; cursor: pointer; border-radius: 4px; }
+        button:hover { background-color: #0056b3; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background-color: #007bff; color: white; }
+        .cancel-btn { background-color: #dc3545; width: auto; padding: 5px 10px; }
+        .cancel-btn:hover { background-color: #a71d2a; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Real Estate Property Management System</h2>
+    <p>Manage your property bookings easily.</p>
+
+    <!-- Booking Add Form -->
+    <hr>
+    <h3>Add New Booking</h3>
+    <form id="bookingForm">
+        <label>Customer ID:</label>
+        <input type="number" id="customerId" placeholder="Enter Customer ID" required>
+
+        <label>Property ID:</label>
+        <input type="number" id="propertyId" placeholder="Enter Property ID" required>
+
+        <label>Viewing Date:</label>
+        <input type="date" id="viewingDate" required>
+
+        <label>Time Slot:</label>
+        <input type="time" id="timeSlot" required>
+
+        <button type="submit">Book Now</button>
+    </form>
+
+    <!-- Bookings List Section -->
+    <hr>
+    <h3>All Bookings List</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Customer ID</th>
+            <th>Property ID</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody id="bookingTableBody">
+        <!-- Bookings will load here dynamically -->
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Page Load වෙද්දී Bookings ටික Load කිරීම
+    window.onload = function() {
+        loadBookings();
+    };
+
+    function loadBookings() {
+        fetch('http://localhost:8081/api/bookings')
+            .then(response => response.json())
+            .then(data => {
+                const tbody = document.getElementById('bookingTableBody');
+                tbody.innerHTML = '';
+
+                data.forEach(booking => {
+                    let tr = document.createElement('tr');
+                    tr.innerHTML = `
+                        <td>${booking.id}</td>
+                        <td>${booking.customerId}</td>
+                        <td>${booking.propertyId}</td>
+                        <td>${booking.viewingDate}</td>
+                        <td>${booking.timeSlot}</td>
+                        <td>${booking.status}</td>
+                        <td><button class="cancel-btn" onclick="cancelBooking(${booking.id})">Cancel</button></td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(error => console.error('Error loading bookings:', error));
+    }
+
+    // Form එක Submit කිරීම
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const bookingData = {
+            customerId: Number(document.getElementById('customerId').value),
+            propertyId: Number(document.getElementById('propertyId').value),
+            viewingDate: document.getElementById('viewingDate').value,
+            timeSlot: document.getElementById('timeSlot').value
+        };
+
+        fetch('http://localhost:8081/api/bookings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(bookingData)
+        })
+            .then(response => {
+                if(response.ok) {
+                    alert('Booking Successful!');
+                    document.getElementById('bookingForm').reset();
+                    loadBookings(); // Table එක ස්වයංක්‍රීයව අලුත් වීම
+                } else {
+                    alert('Booking Failed!');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    });
+
+    // Booking එක Cancel කිරීම
+    function cancelBooking(id) {
+        if(confirm('Are you sure you want to cancel this booking?')) {
+            fetch(`http://localhost:8081/api/bookings/cancel/${id}`)
+                .then(response => {
+                    alert('Booking Cancelled Successfully!');
+                    loadBookings(); // Cancel කළාට පසු List එක Update වීම
+                })
+                .catch(error => console.error('Error cancelling booking:', error));
+        }
+    }
+</script>
+
+</body>
+</html>

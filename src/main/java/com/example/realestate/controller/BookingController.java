@@ -21,11 +21,16 @@ public class BookingController {
     }
 
     @PostMapping
-    public Booking createBooking(@RequestBody Booking booking) {
-        return bookingRepository.save(booking);
+    public String createBooking(@RequestBody Booking booking) {
+
+        if (booking.getStatus() == null || booking.getStatus().isEmpty()) {
+            booking.setStatus("Pending");
+        }
+
+        bookingRepository.save(booking);
+        return "Booking saved successfully to the database!";
     }
 
-    // බ්‍රව්සරයෙන් ලින්ක් එක ගහලා ඩිලීට් කරන්න පුළුවන් වෙන්න මෙන්න මේක දාන්න:
     @GetMapping("/cancel/{id}")
     public void deleteBookingBrowser(@PathVariable Long id) {
         bookingRepository.deleteById(id);

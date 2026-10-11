@@ -1,18 +1,14 @@
-package com.estatex.controller;
+package com.example.realestate.controller;
 
-import com.estatex.dto.ApiResponse;
-import com.estatex.dto.LoginRequest;
-import com.estatex.dto.LoginResponse;
-import com.estatex.dto.RegisterRequest;
-import com.estatex.dto.UserDto;
-import com.estatex.model.Role;
-import com.estatex.service.UserService;
+import com.example.realestate.dto.*;
+import com.example.realestate.model.*;
+import com.example.realestate.service.*;
+import com.example.realestate.security.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.estatex.security.JwtUtil;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,9 +19,9 @@ import java.util.stream.Collectors;
  * REST Controller for User Authentication & Registration.
  * Handles HTTP requests from the sign-in and create account pages.
  */
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/auth")
-@CrossOrigin(originPatterns = "*")
 public class AuthController {
 
     private final UserService userService;
