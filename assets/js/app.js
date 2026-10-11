@@ -373,5 +373,6 @@ function initAuth() {
     document.querySelectorAll('.user-avatar-circle img, .profile-dropdown-header img, #profilePreviewImage').forEach(img => {
       img.src = getProfilePhotoUrl(user);
     });
+
   }
 }
